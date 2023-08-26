@@ -2,7 +2,8 @@ import reflex as rx
 
 
 class State(rx.State):
-    count = 0
+
+    count: int = 0
 
     def increment(self):
         self.count += 1
@@ -16,11 +17,16 @@ def index():
         rx.hstack(
             rx.button("Decrement",
                       color_scheme="red",
-                      border_radius="0.5em",),
-            rx.heading(font_size="2em"),
+                      border_radius="0.5em",
+                      on_click=State.decrement
+                      ),
+
+            rx.heading(State.count, font_size="2em"),
+
             rx.button("Increment",
                       color_scheme="green",
-                      border_radius="0.5em"
+                      border_radius="0.5em",
+                      on_click=State.increment
                       )
 
 

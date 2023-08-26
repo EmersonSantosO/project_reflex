@@ -37,11 +37,13 @@ export default function Component() {
   <Fragment><Fragment>
   <VStack>
   <HStack>
-  <Button colorScheme={`red`} sx={{"borderRadius": "0.5em"}}>
+  <Button colorScheme={`red`} onClick={_e => Event([E("state.decrement", {})], _e)} sx={{"borderRadius": "0.5em"}}>
   {`Decrement`}
 </Button>
-  <Heading sx={{"fontSize": "2em"}}/>
-  <Button colorScheme={`green`} sx={{"borderRadius": "0.5em"}}>
+  <Heading sx={{"fontSize": "2em"}}>
+  {state.count}
+</Heading>
+  <Button colorScheme={`green`} onClick={_e => Event([E("state.increment", {})], _e)} sx={{"borderRadius": "0.5em"}}>
   {`Increment`}
 </Button>
 </HStack>
