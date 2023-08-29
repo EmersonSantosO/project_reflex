@@ -3,12 +3,12 @@ import { useRouter } from "next/router"
 import { E, getAllLocalStorageItems, getRefValue, getRefValues, isTrue, preventDefault, refs, uploadFiles, useEventLoop } from "/utils/state"
 import { EventLoopContext, StateContext } from "/utils/context.js"
 import "focus-visible/dist/focus-visible"
-import { Box, Button, Heading, HStack, Text, useColorMode, VStack } from "@chakra-ui/react"
+import { Box, Container, Text, useColorMode } from "@chakra-ui/react"
 import NextHead from "next/head"
 
 
 export default function Component() {
-  const state = useContext(StateContext)
+  const default_state = useContext(StateContext)
   const router = useRouter()
   const { colorMode, toggleColorMode } = useColorMode()
   const focusRef = useRef();
@@ -25,7 +25,7 @@ export default function Component() {
 
   // Route after the initial page hydration.
   useEffect(() => {
-    const change_complete = () => Event([E('state.hydrate', {})])
+    const change_complete = () => Event([E('default_state.hydrate', {})])
     router.events.on('routeChangeComplete', change_complete)
     return () => {
       router.events.off('routeChangeComplete', change_complete)
@@ -35,19 +35,14 @@ export default function Component() {
 
   return (
   <Fragment><Fragment>
-  <VStack>
-  <HStack>
-  <Button colorScheme={`red`} onClick={_e => Event([E("state.decrement", {})], _e)} sx={{"borderRadius": "0.5em"}}>
-  {`Decrement`}
-</Button>
-  <Heading sx={{"fontSize": "2em"}}>
-  {state.count}
-</Heading>
-  <Button colorScheme={`green`} onClick={_e => Event([E("state.increment", {})], _e)} sx={{"borderRadius": "0.5em"}}>
-  {`Increment`}
-</Button>
-</HStack>
-</VStack>
+  <Container>
+  <Box sx={{"textAlign": "right"}}>
+  {`Hello world!`}
+</Box>
+  <Box sx={{"textAlign": "left"}}>
+  {`Hello world!`}
+</Box>
+</Container>
   <NextHead>
   <title>
   {`Reflex App`}

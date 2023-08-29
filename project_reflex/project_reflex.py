@@ -1,34 +1,30 @@
 import reflex as rx
 
 
-class State(rx.State):
+def index() -> rx.Component:
+    return rx.container(
+        rx.box(
+            "Hello world!",
+            text_align="right",
+        ),
+        rx.box(
+            "Hello world!",
+            text_align="left",
 
-    count: int = 0
-
-    def increment(self):
-        self.count += 1
-
-    def decrement(self):
-        self.count -= 1
+        )
+    )
 
 
-def index():
-    return rx.vstack(
-        rx.hstack(
-            rx.button("Decrement",
-                      color_scheme="red",
-                      border_radius="0.5em",
-                      on_click=State.decrement
-                      ),
-
-            rx.heading(State.count, font_size="2em"),
-
-            rx.button("Increment",
-                      color_scheme="green",
-                      border_radius="0.5em",
-                      on_click=State.increment
-                      )
-
+def qa(question: str, answer: str) -> rx.Component:
+    return rx.container(
+        rx.box(
+            question,
+            text_align="right",
+        ),
+        rx.box(
+            answer,
+            text_align="left",
+            margin_y="1em"
 
         )
     )
